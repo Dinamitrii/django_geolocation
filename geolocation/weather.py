@@ -4,7 +4,9 @@ import segno
 import requests
 import os
 
-load_dotenv()
+load_dotenv('static/.env')
+# API_KEY = os.getenv("API_KEY")
+
 
 
 def get_current_weather(city="Sofia"):
