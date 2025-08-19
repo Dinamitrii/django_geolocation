@@ -22,3 +22,7 @@ def index(request):
     ###
 
     return render(request, 'index.html', {'data': json_data})
+
+
+def weather(request):
+    return None

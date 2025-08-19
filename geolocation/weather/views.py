@@ -9,18 +9,16 @@ load_dotenv('.env')
 API_KEY = os.getenv("API_KEY")
 
 
-
 def get_current_weather(request):
     request_url = (f'https://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&lang=bg'
                    f'&units=metric')
-    weather_data = requests.get(request_url).json()
+    requests.get(request_url).json()
 
     # return render(weather,weather.html)
 
-
-# if __name__ == "__main__":
-#
-#     print("\n*** Get Current Weather Conditions ***\n")
+    # if __name__ == "__main__":
+    #
+    #     print("\n*** Get Current Weather Conditions ***\n")
 
     city = input("\nPlease enter a city name: ")
 
@@ -30,8 +28,8 @@ def get_current_weather(request):
 
     weather_data = get_current_weather(city)
 
-    print("\n")
-    pprint(weather_data)
+    # print("\n")
+    # pprint(weather_data)
 
     # data = requests.get(weather_url)
     # text_weather = data.text
@@ -42,4 +40,4 @@ def get_current_weather(request):
     # if not bool(city.strip):
     #     city = json_data['city']
 
-    return render(request, 'weather.html',{'data': weather_data})
+    return render(request, 'weather.html', {'data': weather_data})

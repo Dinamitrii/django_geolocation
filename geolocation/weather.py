@@ -4,7 +4,7 @@ import segno
 import requests
 import os
 
-load_dotenv('templates/.env')
+# load_dotenv('templates/.env')
 # API_KEY = os.getenv("API_KEY")
 
 
