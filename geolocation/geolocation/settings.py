@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location',  # Custom app for geolocation
+    'weather',
     
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'geolocation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Directory for custom templates
+        'DIRS': [BASE_DIR / 'templates'], # Directory for custom templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
