@@ -1,8 +1,4 @@
-from multiprocessing.managers import view_type
-
-from django.contrib.gis.geometry import json_regex
 from dotenv import load_dotenv
-import segno
 import os
 from django.shortcuts import render
 import requests
