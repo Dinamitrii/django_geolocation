@@ -1,43 +1,32 @@
-from django.shortcuts import render
 from dotenv import load_dotenv
-from pprint import pprint
-import segno
-import requests
 import os
+from django.shortcuts import render
+import requests
+import json
+
+from requests import request
 
 load_dotenv('.env')
-API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")
 
 
-def get_current_weather(request):
-    request_url = (f'https://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&lang=bg'
-                   f'&units=metric')
-    requests.get(request_url).json()
+def get_current_weather(city):
 
-    # return render(weather,weather.html)
+    weather_url = (
+        f'https://api.openweathermap.org/data/2.5/weather?'
+        f'appid={os.getenv("API_KEY")}&q={city}&lang=bg'
+        f'&units=metric'
+    )
 
-    # if __name__ == "__main__":
-    #
-    #     print("\n*** Get Current Weather Conditions ***\n")
+    weather_data = requests.get(weather_url)
 
-    city = input("\nPlease enter a city name: ")
+    weather_text = weather_data.text
+
+    weather_json = json.loads(weather_text)
 
     # Check for empty strings or string with only spaces
     if not bool(city.strip()):
         city = "Sofia"
 
-    weather_data = get_current_weather(city)
 
-    # print("\n")
-    # pprint(weather_data)
-
-    # data = requests.get(weather_url)
-    # text_weather = data.text
-    # weather = json.loads(text_weather)
-    #
-    # city =
-    # # Check for empty strings or string with only spaces
-    # if not bool(city.strip):
-    #     city = json_data['city']
-
-    return render(request, 'weather.html', {'data': weather_data})
+    return render(request, 'weather.html', {'data': weather_json, 'city': city})
