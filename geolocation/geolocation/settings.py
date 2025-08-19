@@ -57,7 +57,7 @@ ROOT_URLCONF = 'geolocation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Directory for custom templates
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR /'static'], # Directory for custom templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
