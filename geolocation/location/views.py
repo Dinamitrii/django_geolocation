@@ -4,6 +4,7 @@ from django.shortcuts import render
 import requests
 import json
 
+from requests import request
 
 load_dotenv(".env")
 BASE_URL = os.getenv("BASE_URL")
@@ -21,8 +22,38 @@ def index(request):
     json_data = json.loads(text_data)
     ###
 
-    return render(request, 'index.html', {'data': json_data})
+
+    city = input("Enter city: ")
+
+    weather_url = (
+        f'https://api.openweathermap.org/data/2.5/weather?'
+        f'appid={os.getenv("API_KEY")}&q={city}&lang=bg'
+        f'&units=metric'
+    )
+
+    weather_data = requests.get(weather_url)
+
+    weather_text = weather_data.text
+
+    weather_json = json.loads(weather_text)
+
+    return render(request, 'index.html', {'data': weather_json})
 
 
-def weather(request):
-    return None
+# def weather(request):
+#
+#     # city = input("Enter city: ")
+#
+#     weather_url = (
+#         f'https://api.openweathermap.org/data/2.5/weather?'
+#         f'appid={os.getenv("API_KEY")}&q={index(request).getvalue()}&lang=bg'
+#         f'&units=metric'
+#     )
+#
+#     weather_data = requests.get(weather_url)
+#
+#     weather_text = weather_data.text
+#
+#     weather_json = json.loads(weather_text)
+#
+#     return render(request, 'weather.html', {'data': weather_json})
