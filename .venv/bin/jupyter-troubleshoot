@@ -1,4 +1,4 @@
-#!/home/dinamitrii/PycharmProjects/django_geoloc/.venv/bin/python
+#!/home/dinamitrii/PycharmProjects/django_geolocation/.venv/bin/python
 import sys
 from jupyter_core.troubleshoot import main
 if __name__ == '__main__':

@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (django_geoloc)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (django_geoloc)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 virtualenv at ~/PycharmProjects/django_geolocation/.venv" project-jdk-type="Python SDK" />
 </project>

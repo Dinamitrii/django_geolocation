@@ -72,7 +72,7 @@
 </body>
 
 <body>
-<h1>В град {{ title }} [{{ country_code }}] времето към момента е...</h1>
+<h1>В град {{ data.city }} [{{ data.countryCode }}] времето към момента е...</h1>
 
 <p>&nbsp;</p>
 
@@ -86,29 +86,29 @@
 
 <hr>
 
-<form action="/weather">
-    <label for="city"></label>
-
-    <input type="text" name="city" id="city"
-                                     placeholder="Enter a city"/>
-
-    <button type="submit">Request Info</button>
-</form>
+{#<form action="/weather">#}
+{#    <label for="city"></label>#}
+{##}
+{#    <input type="text" name="city" id="city"#}
+{#                                     placeholder="Enter a city"/>#}
+{##}
+{#    <button type="submit">Request Info</button>#}
+{#</form>#}
 
 <hr>
 
 <p>&nbsp;</p>
-<p>Абревиатура на държавата [{{ country_code }}]</p>
+<p>Абревиатура на държавата [{{ data.countryCode }}]</p>
 <p>&nbsp;</p>
 <p>Слънцето изгрява в {{ sunrise }} часа и залязва в {{ sunset }} часа локално време</p>
-<p>Time zone {{ targets_tz }} hours offset by UTC/GMT</p>
-<p>Локалното време при обновяването на информацията {{ targets_daytime }}</p>
+<p>Time zone {{ dta.timezone }} hours offset by UTC/GMT</p>
+{#<p>Локалното време при обновяването на информацията {{ targets_daytime }}</p>#}
 
 <hr>
 
 <p><font color="white">Координати в десетични градуси</font><br>
-<font color="green">Географска ширина: {{ geo_latitude }} </font><br>
-<font color="red">Географска дължина: {{ geo_longitude }}</font></p>
+<font color="green">Географска ширина: {{ data.lat}} </font><br>
+<font color="red">Географска дължина: {{ data.lon }}</font></p>
 
 <hr>
 <div class="container-fluid text-center">

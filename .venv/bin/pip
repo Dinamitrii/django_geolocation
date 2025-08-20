@@ -1,4 +1,4 @@
-#!/home/dinamitrii/PycharmProjects/django_geoloc/.venv/bin/python
+#!/home/dinamitrii/PycharmProjects/django_geolocation/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
