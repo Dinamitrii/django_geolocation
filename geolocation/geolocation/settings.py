@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location',  # Custom app for geolocation
+    'crispy_forms',
+    'crispy_bootstrap4',
     
 ]
 
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'geolocation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'static'], # Directory for custom templates
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'static'], # Directory for custom templates and dirs ####
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,7 +101,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+ALLOWED_TEMPLATES = [
 
+    'crispy-forms',
+    'crispy-bootstrap4',
+
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
