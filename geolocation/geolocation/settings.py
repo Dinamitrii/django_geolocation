@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'geolocation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'static'], # Directory for custom templates and dirs ####
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'static'], # Directory for custom templates and directories ####
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-ALLOWED_TEMPLATES = [
+CRISPY_TEMPLATE_PACK  = [
 
     'crispy-forms',
     'crispy-bootstrap4',
@@ -119,6 +119,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
