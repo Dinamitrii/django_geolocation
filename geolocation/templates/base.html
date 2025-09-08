@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GeoLoc based on your public IP address</title>
+  <title>GeoLock'n'Trax based on your public IP address</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -54,7 +54,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Geolocation</a>
+      <a class="navbar-brand" href="#">GeoLock'n'Trax</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -97,9 +97,95 @@
     </div>
 </div>
 
-<div id="map">
+<div id="map" style="align-content: center" align="right"></div>
+
+<div class="container mx-auto p-4"></div>
+
+<h1 class="text-2x1 font-weight-bold mb-4">Get Lock'n'Trax on you</h1>
+
+<!--Get to a buton to trax location of user -->
+<button id="GetLocationBtn" class="bg-blue-500 text-white px-4 py-2 img-rounded hover:bg-blue-600">
+
+    GetLock'n'Trax
+</button>
+
+<div id="LocationResult" class="mt-4">
+
+    <h2 class="font-semibold">Locked'n'Traxed:</h2>
+
+    <p>Latitude: <span id="latitudeDisplay"></span></p>
+    <p>Longitude: <span id="longitudeDisplay"></span></p>
 
 </div>
+
+<div id="locationError" class="mt-4 text-red-600 hidden">
+
+</div>
+<script>
+
+    const sendUserCoordinates = (coords) => {
+        fetch('/save-location/',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+                })
+            }
+
+        )
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const GetLocationBtn = document.getElementById('GetLocationBtn');
+        const latitudeDisplay = document.getElementById('latitudeDisplay');
+        const longitudeDisplay = document.getElementById('longitudeDisplay');
+
+        GetLocationBtn.addEventListener('click', function () {
+            //Here checking for geolocation available
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    //Success here
+                    function (position) {
+                        // Sending coordinates to server via AJAX
+                        latitudeDisplay.textContent = position.coords.latitude.toFixed(4);
+                        longitudeDisplay.textContent = position.coords.longitude.toFixed(4);
+                        sendUserCoordinates(position.coords);
+                    },
+                    // Error here
+                    function (error) {
+                        console.error(error);
+                    },
+                    // Some options
+
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0,
+                    }
+                )
+            }
+
+        });
+
+    });
+</script>
+
+
+
+{#<script>#}
+{#    var GeoportailFrance_plan = L.tileLayer('https://data.geopf.fr/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE={style}&TILEMATRIXSET=PM&FORMAT={format}&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}', {#}
+{#	attribution: '<a target="_blank" href="https://www.geoportail.gouv.fr/">Geoportail France</a>',#}
+{#	bounds: [[-75, -180], [81, 180]],#}
+{#	minZoom: 2,#}
+{#	maxZoom: 18,#}
+{#	format: 'image/png',#}
+{#	style: 'normal'#}
+
+{#</script>#}
 
 </body>
 
